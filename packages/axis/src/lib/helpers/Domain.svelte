@@ -1,5 +1,5 @@
-<script lang="ts" generics="Domain, Scale extends AxisScale<Domain>">
-	import type { AxisScale } from "../types.js";
+<script lang="ts" generics="Domain extends AxisDomain, Scale extends AxisScale<Domain>">
+	import type { AxisDomain, AxisScale } from "../types.js";
 
 	import { Orientation } from "../utils.js";
 

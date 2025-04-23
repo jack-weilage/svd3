@@ -5,6 +5,8 @@ export interface AxisScale<Domain> {
 	copy(): this;
 	bandwidth?(): number;
 	round(): boolean;
+	ticks(...args: any[]): Domain[];
+	tickFormat(...args: any[]): this;
 }
 
 export type AxisDomain = number | string | Date | { valueOf(): number };

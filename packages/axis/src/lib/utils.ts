@@ -1,18 +1,18 @@
-import type { AxisDomain, AxisScale } from "./types.js";
+import type { AxisScale } from "./types.js";
 
 const EPSILON = 1e-6;
 
-export function center<Domain extends AxisDomain>(scale: AxisScale<Domain>, offset: number) {
+export function center(scale: AxisScale<unknown>, offset: number) {
 	offset = Math.max(0, scale.bandwidth?.() ?? 0 - offset * 2) / 2;
 
 	if (scale.round()) {
 		offset = Math.round(offset);
 	}
 
-	return (d: Domain) => +(scale(d) ?? 0) + offset;
+	return (d: unknown) => +(scale(d) ?? 0) + offset;
 }
-export function number<Domain extends AxisDomain>(scale: AxisScale<Domain>) {
-	return (d: Domain) => +(scale(d) ?? 0);
+export function number(scale: AxisScale<unknown>) {
+	return (d: unknown) => +(scale(d) ?? 0);
 }
 
 export enum Orientation {

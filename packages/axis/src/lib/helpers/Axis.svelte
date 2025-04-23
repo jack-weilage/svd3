@@ -1,7 +1,7 @@
-<script lang="ts" generics="Domain, Scale extends AxisScale<Domain>">
+<script lang="ts" generics="Domain extends AxisDomain, Scale extends AxisScale<Domain>">
 	import type { Snippet } from "svelte";
 	import type { SVGAttributes } from "svelte/elements";
-	import type { AxisScale } from "../types.js";
+	import type { AxisDomain, AxisScale } from "../types.js";
 
 	import { Orientation, center, number } from "../utils.js";
 	import Tick from "./Tick.svelte";
@@ -11,6 +11,7 @@
 		orient,
 		scale = $bindable(),
 
+		ticks = [],
 		tickArguments = $bindable([]),
 		tickValues = $bindable(null),
 		tickFormat = $bindable(null),
@@ -26,6 +27,7 @@
 		orient: Orientation;
 		scale: Scale;
 
+		ticks?: any[];
 		tickArguments?: any[];
 		tickValues?: Iterable<Domain> | null;
 		tickFormat?: ((domainValue: Domain, index: number) => string) | null;
@@ -38,6 +40,9 @@
 		children?: Snippet;
 	} & SVGAttributes<SVGGElement> = $props();
 
+	$effect(() => {
+		tickArguments = ticks;
+	});
 	$effect(() => {
 		tickSizeInner = tickSize;
 		tickSizeOuter = tickSize;
@@ -64,7 +69,7 @@
 		tickFormat == null
 			? scale.tickFormat
 				? scale.tickFormat.apply(scale, tickArguments)
-				: (x) => x
+				: (x: any) => x
 			: tickFormat,
 	);
 	let spacing = $derived(Math.max(tickSizeInner, 0) + tickPadding);
@@ -100,11 +105,11 @@
 	<!-- 			: `M${range0},${offset}H${range1}`} -->
 	<!-- /> -->
 
-	{#each values as value}
-		{@const d = scale(value)}
+	{#each values as value, i}
+		{@const d = scale(value) as Domain}
 
 		<Tick transform={transform(position(d) + offset)} {orient} {k} {tickSizeInner} {spacing}>
-			{format(d)}
+			{format(d, i)}
 		</Tick>
 
 		<!-- <g class="tick" opacity="1" transform={transform(position(d) + offset)}> -->
