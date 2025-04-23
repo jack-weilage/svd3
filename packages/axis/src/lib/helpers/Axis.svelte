@@ -63,9 +63,6 @@
 			: tickFormat,
 	);
 	let spacing = $derived(Math.max(tickSizeInner, 0) + tickPadding);
-	// let range = $derived(scale.range());
-	// let range0 = $derived(+range[0] + offset);
-	// let range1 = $derived(+range[range.length - 1] + offset);
 	let position = $derived((scale.bandwidth ? center : number)(scale.copy(), offset));
 </script>
 
@@ -83,38 +80,10 @@
 	{@render children?.()}
 
 	<Domain {scale} {orient} {tickSizeOuter} {k} {offset} />
-	<!-- <path -->
-	<!-- 	class="domain" -->
-	<!-- 	stroke="currentColor" -->
-	<!-- 	d={orient === Orientation.Left || orient === Orientation.Right -->
-	<!-- 		? tickSizeOuter -->
-	<!-- 			? `M${k * tickSizeOuter},${range0}H${offset}V${range1}H${k * tickSizeOuter}` -->
-	<!-- 			: `M${offset},${range0}V${range1}` -->
-	<!-- 		: tickSizeOuter -->
-	<!-- 			? `M${range0},${k * tickSizeOuter}V${offset}H${range1}V${k * tickSizeOuter}` -->
-	<!-- 			: `M${range0},${offset}H${range1}`} -->
-	<!-- /> -->
 
 	{#each values as value, i}
-		{@const d = scale(value) as Domain}
-
-		<Tick transform={transform(position(d) + offset)} {orient} {k} {tickSizeInner} {spacing}>
-			{format(d, i)}
+		<Tick transform={transform(position(value) + offset)} {orient} {k} {tickSizeInner} {spacing}>
+			{format(value, i)}
 		</Tick>
-
-		<!-- <g class="tick" opacity="1" transform={transform(position(d) + offset)}> -->
-		<!-- 	<line stroke="currentColor" {...{ [`${x}2`]: k * tickSizeInner }} /> -->
-		<!-- 	<text -->
-		<!-- 		fill="currentColor" -->
-		<!-- 		{...{ [x]: k * spacing }} -->
-		<!-- 		dy={orient === Orientation.Top -->
-		<!-- 			? "0em" -->
-		<!-- 			: orient === Orientation.Bottom -->
-		<!-- 				? "0.71em" -->
-		<!-- 				: "0.32em"} -->
-		<!-- 	> -->
-		<!-- 		{format(d)} -->
-		<!-- 	</text> -->
-		<!-- </g> -->
 	{/each}
 </g>
