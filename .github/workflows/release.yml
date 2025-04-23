@@ -26,7 +26,7 @@ jobs:
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@v2
+        uses: changesets/action@v1
         with:
           version: bun changeset:version && git add --all
           publish: bun changeset:publish
