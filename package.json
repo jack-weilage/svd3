@@ -6,9 +6,13 @@
 	],
 	"license": "MIT",
 	"scripts": {
-		"format": "prettier --write ."
+		"build": "bun run --filter './packages/*' build",
+		"format": "prettier --write .",
+		"changeset:version": "changeset version",
+		"changeset:publish": "changeset publish"
 	},
 	"devDependencies": {
+		"@changesets/cli": "^2.29.2",
 		"prettier": "^3.5.3",
 		"prettier-plugin-svelte": "^3.3.3"
 	}
