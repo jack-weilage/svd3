@@ -1,12 +1,12 @@
 export interface AxisScale<Domain> {
-	(x: Domain): number | undefined;
+	(x: any): number | undefined;
 	domain(): Domain[];
 	range(): number[];
 	copy(): this;
 	bandwidth?(): number;
-	round(): boolean;
+	round?(): boolean;
 	ticks(...args: any[]): Domain[];
-	tickFormat(...args: any[]): this;
+	tickFormat(...args: any[]): (d: any) => string;
 }
 
 export type AxisDomain = number | string | Date | { valueOf(): number };

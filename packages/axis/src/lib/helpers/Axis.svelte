@@ -36,7 +36,7 @@
 		offset?: number;
 
 		children?: Snippet;
-	} & SVGAttributes<SVGGElement> = $props();
+	} & Omit<SVGAttributes<SVGGElement>, "scale"> = $props();
 
 	$effect(() => {
 		tickSizeInner = tickSize;
