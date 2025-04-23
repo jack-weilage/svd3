@@ -1,0 +1,15 @@
+{
+	"main": "svd3-monorepo",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"license": "MIT",
+	"scripts": {
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"prettier": "^3.5.3",
+		"prettier-plugin-svelte": "^3.3.3"
+	}
+}
