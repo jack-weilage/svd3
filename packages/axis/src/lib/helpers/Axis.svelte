@@ -18,7 +18,7 @@
 		tickSizeInner = $bindable(6),
 		tickSizeOuter = $bindable(6),
 		tickPadding = $bindable(3),
-		offset = $bindable(window?.devicePixelRatio > 1 ? 0 : 0.5),
+		offset = $bindable(globalThis["window"]?.devicePixelRatio > 1 ? 0 : 0.5),
 
 		children,
 		...restProps
