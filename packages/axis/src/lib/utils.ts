@@ -5,7 +5,7 @@ const EPSILON = 1e-6;
 export function center(scale: AxisScale<unknown>, offset: number) {
 	offset = Math.max(0, scale.bandwidth?.() ?? 0 - offset * 2) / 2;
 
-	if (scale.round()) {
+	if (scale.round?.()) {
 		offset = Math.round(offset);
 	}
 
