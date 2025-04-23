@@ -43,16 +43,11 @@
 		tickSizeOuter = tickSize;
 	});
 
-	let k = $derived(orient === Orientation.Top || orient === Orientation.Left ? -1 : 1);
-	// let x: "x" | "y" = $derived(
-	// 	orient === Orientation.Left || orient === Orientation.Right ? "x" : "y",
-	// );
-	let transform = $derived(
+	const k = orient === Orientation.Top || orient === Orientation.Left ? -1 : 1;
+	const transform =
 		orient === Orientation.Top || orient === Orientation.Bottom
 			? (x: number) => `translate(${x}, 0)`
-			: (y: number) => `translate(0, ${y})`,
-	);
-
+			: (y: number) => `translate(0, ${y})`;
 	let values = $derived(
 		tickValues == null
 			? scale.ticks
