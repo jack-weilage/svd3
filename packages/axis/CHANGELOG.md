@@ -1,5 +1,11 @@
 # @svd3/axis
 
+## 0.1.1
+
+### Patch Changes
+
+- b12093b: Fix types to be more correct
+
 ## 0.1.0
 
 ### Minor Changes
