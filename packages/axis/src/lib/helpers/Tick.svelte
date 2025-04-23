@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 
-	import { Orientation } from "$lib/types.js";
+	import { Orientation } from "../utils.js";
 
 	let {
 		transform,

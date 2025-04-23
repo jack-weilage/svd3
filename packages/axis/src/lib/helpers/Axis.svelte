@@ -1,9 +1,9 @@
 <script lang="ts" generics="Domain, Scale extends AxisScale<Domain>">
 	import type { Snippet } from "svelte";
 	import type { SVGAttributes } from "svelte/elements";
-	import type { AxisScale } from "./types.js";
+	import type { AxisScale } from "../types.js";
 
-	import { Orientation, center, number } from "./utils.js";
+	import { Orientation, center, number } from "../utils.js";
 	import Tick from "./Tick.svelte";
 	import Domain from "./Domain.svelte";
 
