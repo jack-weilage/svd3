@@ -12,7 +12,6 @@
 		scale = $bindable(),
 
 		ticks = [],
-		tickArguments = $bindable([]),
 		tickValues = $bindable(null),
 		tickFormat = $bindable(null),
 		tickSize = $bindable(6),
@@ -28,7 +27,6 @@
 		scale: Scale;
 
 		ticks?: any[];
-		tickArguments?: any[];
 		tickValues?: Iterable<Domain> | null;
 		tickFormat?: ((domainValue: Domain, index: number) => string) | null;
 		tickSize?: number;
@@ -40,9 +38,6 @@
 		children?: Snippet;
 	} & SVGAttributes<SVGGElement> = $props();
 
-	$effect(() => {
-		tickArguments = ticks;
-	});
 	$effect(() => {
 		tickSizeInner = tickSize;
 		tickSizeOuter = tickSize;
@@ -61,14 +56,14 @@
 	let values = $derived(
 		tickValues == null
 			? scale.ticks
-				? scale.ticks.apply(scale, tickArguments)
+				? scale.ticks.apply(scale, ticks)
 				: scale.domain()
 			: tickValues,
 	);
 	let format = $derived(
 		tickFormat == null
 			? scale.tickFormat
-				? scale.tickFormat.apply(scale, tickArguments)
+				? scale.tickFormat.apply(scale, ticks)
 				: (x: any) => x
 			: tickFormat,
 	);
